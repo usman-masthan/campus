@@ -73,16 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Campus Crowd'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.map),
-            onPressed: _openMapView,
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: _openSettings,
-          ),
-        ],
       ),
       body: RefreshIndicator(
         onRefresh: _refreshData,
