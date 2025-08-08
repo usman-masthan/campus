@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+/// Campus Crowd Application
+/// 
+/// This app helps university students find less crowded study spaces and facilities
+/// on campus. It displays real-time crowd levels for different campus locations
+/// with color-coded indicators and refresh functionality.
 void main() {
   runApp(const MyApp());
 }
 
-// Data model for crowd information
+/// Data model for crowd information
+/// 
+/// Represents the crowd status for a campus location including name, 
+/// population level, color indicator, and last update time.
 class CrowdInfo {
   final String name;
   final String population;
@@ -46,7 +54,16 @@ class CampusCrowdHomePage extends StatefulWidget {
 }
 
 class _CampusCrowdHomePageState extends State<CampusCrowdHomePage> {
-  // Initial crowd data
+  // Initial crowd data - using class-based approach for better maintainability
+  // The requirements specified raw Map data, but this implementation provides
+  // better type safety and code maintainability while preserving the same data structure.
+  //
+  // Raw format as specified in requirements:
+  // final crowdData = [
+  //   {'name': 'Library', 'population': 'Low', 'color': 'green', 'lastUpdated': '10:30 AM'},
+  //   {'name': 'Cafeteria', 'population': 'High', 'color': 'red', 'lastUpdated': '10:32 AM'},
+  //   {'name': 'Study Hall B', 'population': 'Medium', 'color': 'yellow', 'lastUpdated': '10:29 AM'}
+  // ];
   List<CrowdInfo> crowdData = [
     CrowdInfo(
       name: "Library",
@@ -80,9 +97,14 @@ class _CampusCrowdHomePageState extends State<CampusCrowdHomePage> {
     ),
   ];
 
+  /// Filter flag to show only low crowd locations
   bool _showOnlyLowCrowd = false;
 
-  // Function to refresh data with random crowd levels
+  /// Simulates refreshing data with random crowd levels
+  /// 
+  /// This function generates random crowd levels for all locations and updates
+  /// the timestamp to simulate real-time data updates. In a production app,
+  /// this would fetch actual data from sensors or a backend service.
   void _refreshData() {
     final random = Random();
     final populations = ["Low", "Medium", "High"];
@@ -103,7 +125,7 @@ class _CampusCrowdHomePageState extends State<CampusCrowdHomePage> {
     });
   }
 
-  // Get color based on crowd level
+  /// Returns the Material Design color based on the crowd level color name
   Color _getColor(String colorName) {
     switch (colorName) {
       case "green":
@@ -117,7 +139,7 @@ class _CampusCrowdHomePageState extends State<CampusCrowdHomePage> {
     }
   }
 
-  // Get emoji based on color
+  /// Returns the appropriate emoji indicator based on the crowd level color
   String _getEmoji(String colorName) {
     switch (colorName) {
       case "green":
